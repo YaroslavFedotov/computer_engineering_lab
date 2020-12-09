@@ -1,0 +1,72 @@
+Microsoft (R) Macro Assembler Version 5.00                  12/18/18 11:18:42
+                                                             Page     1-1
+
+
+ 0000				SEG1 SEGMENT  
+ 0000  02			OPER1 DB 2  
+ 0001  05			OPER2 DB 5 
+ 0002  ????			RESULT_AREA DW ?  
+ 0004  ??			RESULT_PIRIMETR DB ? 
+ 0005				SEG1 ENDS  
+				 
+ 0000				CODE SEGMENT  
+				ASSUME CS:CODE, DS:SEG1  
+ 0000				START:  
+ 0000  B8 ---- R		MOV AX,SEG1 
+ 0003  8E D8			MOV DS,AX 
+				 
+ 0005  8A 1E 0000 R		MOV BL,OPER1 
+ 0009  A0 0001 R		MOV AL,OPER2 
+ 000C  F6 E3			MUL BL 
+ 000E  A3 0002 R		MOV RESULT_AREA,AX 
+				 
+ 0011  8A 26 0000 R		MOV AH,OPER1 
+ 0015  02 26 0001 R		ADD AH,OPER2 
+ 0019  88 26 0004 R		MOV RESULT_PIRIMETR,AH 
+				 
+ 001D  8A 26 0004 R		MOV AH,RESULT_PIRIMETR 
+ 0021  02 26 0000 R		ADD AH,OPER1 
+ 0025  88 26 0004 R		MOV RESULT_PIRIMETR,AH 
+				 
+ 0029  8A 26 0004 R		MOV AH,RESULT_PIRIMETR 
+ 002D  02 26 0001 R		ADD AH,OPER2 
+ 0031  88 26 0004 R		MOV RESULT_PIRIMETR,AH 
+				 
+ 0035  B4 4C			MOV AH,4CH  
+ 0037  CD 21			INT 21H  
+ 0039				CODE ENDS  
+				END START 
+Microsoft (R) Macro Assembler Version 5.00                  12/18/18 11:18:42
+                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODE . . . . . . . . . . . . . .  	0039	PARA	NONE	
+SEG1 . . . . . . . . . . . . . .  	0005	PARA	NONE	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+OPER1  . . . . . . . . . . . . .  	L BYTE	0000	SEG1
+OPER2  . . . . . . . . . . . . .  	L BYTE	0001	SEG1
+
+RESULT_AREA  . . . . . . . . . .  	L WORD	0002	SEG1
+RESULT_PIRIMETR  . . . . . . . .  	L BYTE	0004	SEG1
+
+START  . . . . . . . . . . . . .  	L NEAR	0000	CODE
+
+@FILENAME  . . . . . . . . . . .  	TEXT  Lab_04		
+
+
+     34 Source  Lines
+     34 Total   Lines
+      9 Symbols
+
+  51208 + 465336 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors

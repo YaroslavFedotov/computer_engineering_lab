@@ -1,0 +1,103 @@
+using System;
+using System.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+
+namespace ConsoleApp8
+{
+    class Program
+    {
+        static Int32[] Slit_Sort(Int32[] massive)
+        {
+            if (massive.Length == 1)
+                return massive;
+            Int32 mid_point = massive.Length / 2;
+            return Razb(Slit_Sort(massive.Take(mid_point).ToArray()),
+                Slit_Sort(massive.Skip(mid_point).ToArray()));
+        }
+        static Int32[] Razb(Int32[] mass1, Int32[] mass2)
+        {
+            Int32 a = 0, b = 0;
+            Int32[] merged = new int[mass1.Length + mass2.Length];
+            for (Int32 i = 0; i < mass1.Length + mass2.Length; i++)
+            {
+                if (b < mass2.Length && a < mass1.Length)
+                    if (mass1[a] > mass2[b])
+                        merged[i] = mass2[b++];
+                    else
+                        merged[i] = mass1[a++];
+                else if (b < mass2.Length) merged[i] = mass2[b++];
+                else merged[i] = mass1[a++];
+            }
+            return merged;
+        }
+        static void Main(string[] args)
+        {
+            for (; ; )
+            {
+                Int32 k = 0;
+                Console.Write("Введите размер масива: ");
+                try
+                {
+                    k = Int32.Parse(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("введено не число");
+                    Console.ReadKey();
+                    return;
+                }
+                Int32 r = 0;
+                Console.WriteLine("");
+                Console.Write("Введите максимальны размер чисел: ");
+                try
+                {
+                    r = Int32.Parse(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("введено не число");
+                    Console.ReadKey();
+                    return;
+                }
+                Int32[] arr = new Int32[k];
+                Random rd = new Random();
+                Console.WriteLine("");
+                for (Int32 i = 0; i < arr.Length; ++i)
+                {
+                    arr[i] = rd.Next(1, r);
+                }
+                Console.WriteLine("Массив перед сортировкой:");
+                      foreach (Int32 x in arr) Console.Write(x + " ");
+                Console.WriteLine("");
+                Console.WriteLine("");
+                Console.WriteLine("для сортировки нажмите любую клавишу");
+                Console.ReadKey();
+                Stopwatch stopWatch = new Stopwatch();
+                      stopWatch.Start();
+                         arr = Slit_Sort(arr);
+                      stopWatch.Stop();
+                Console.WriteLine("");
+                Console.WriteLine("после сортировки:");
+                      foreach (Int32 x in arr)
+                Console.Write(x + " ");
+                Console.WriteLine("");
+                      TimeSpan ts = stopWatch.Elapsed;
+                      string elapsedTime = string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                      ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+                Console.WriteLine("");
+                Console.WriteLine("Время работы: " + elapsedTime);
+                Console.WriteLine("");
+                Console.WriteLine("для выхода нажмите любую клавишу");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+        }
+
+    }
+}
+
+

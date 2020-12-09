@@ -1,0 +1,21 @@
+C:\Users\KsiJa\source\repos\Lab_04 Z_2\Lab_04 Z_2\bin\Debug\Lab_04 Z_2.exe.config
+C:\Users\KsiJa\source\repos\Lab_04 Z_2\Lab_04 Z_2\bin\Debug\Lab_04 Z_2.exe
+C:\Users\KsiJa\source\repos\Lab_04 Z_2\Lab_04 Z_2\bin\Debug\Lab_04 Z_2.pdb
+C:\Users\KsiJa\source\repos\Lab_04 Z_2\Lab_04 Z_2\obj\Debug\Lab_04 Z_2.csprojAssemblyReference.cache
+C:\Users\KsiJa\source\repos\Lab_04 Z_2\Lab_04 Z_2\obj\Debug\Lab_04 Z_2.csproj.CoreCompileInputs.cache
+C:\Users\KsiJa\source\repos\Lab_04 Z_2\Lab_04 Z_2\obj\Debug\Lab_04 Z_2.exe
+C:\Users\KsiJa\source\repos\Lab_04 Z_2\Lab_04 Z_2\obj\Debug\Lab_04 Z_2.pdb
+C:\Users\Ярослав\Desktop\ЛАБЫ_ПО_АСМ — 2\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\bin\Debug\Lab_04 Z_2.exe.config
+C:\Users\Ярослав\Desktop\ЛАБЫ_ПО_АСМ — 2\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\bin\Debug\Lab_04 Z_2.exe
+C:\Users\Ярослав\Desktop\ЛАБЫ_ПО_АСМ — 2\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\bin\Debug\Lab_04 Z_2.pdb
+C:\Users\Ярослав\Desktop\ЛАБЫ_ПО_АСМ — 2\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\obj\Debug\Lab_04 Z_2.csprojAssemblyReference.cache
+C:\Users\Ярослав\Desktop\ЛАБЫ_ПО_АСМ — 2\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\obj\Debug\Lab_04 Z_2.csproj.CoreCompileInputs.cache
+C:\Users\Ярослав\Desktop\ЛАБЫ_ПО_АСМ — 2\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\obj\Debug\Lab_04 Z_2.exe
+C:\Users\Ярослав\Desktop\ЛАБЫ_ПО_АСМ — 2\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\obj\Debug\Lab_04 Z_2.pdb
+C:\Users\yaros_nftp_3\Desktop\ивт\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\bin\Debug\Lab_04 Z_2.exe.config
+C:\Users\yaros_nftp_3\Desktop\ивт\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\bin\Debug\Lab_04 Z_2.exe
+C:\Users\yaros_nftp_3\Desktop\ивт\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\bin\Debug\Lab_04 Z_2.pdb
+C:\Users\yaros_nftp_3\Desktop\ивт\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\obj\Debug\Lab_04 Z_2.csprojAssemblyReference.cache
+C:\Users\yaros_nftp_3\Desktop\ивт\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\obj\Debug\Lab_04 Z_2.csproj.CoreCompileInputs.cache
+C:\Users\yaros_nftp_3\Desktop\ивт\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\obj\Debug\Lab_04 Z_2.exe
+C:\Users\yaros_nftp_3\Desktop\ивт\Лаб_4\Программа для второго задания\Lab_04 Z_2\Lab_04 Z_2\obj\Debug\Lab_04 Z_2.pdb

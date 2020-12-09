@@ -1,0 +1,520 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp25
+{
+    class Program
+    {
+        static int Z, Lim_down, Lim_up;
+        static int[] M;
+        static Random R = new Random();
+        static bool L = false;
+        static bool Q = false;
+        static void Main(string[] args)
+        {
+            for (int m = 0; m == 0;)
+            {
+                int N = 0;
+                Console.Write("\n ОПЕРАЦИИ:" +
+               "\n\n 1. Заполнение массива." +
+               "\n 2. Пузырьковая сортировка. " +
+               "\n 3. Сортировка выбором. " +
+               "\n 4. Сортировка вставками. " +
+               "\n 5. Сортировка подсчетом. " +
+               "\n 6. Двоичный поиск значения. " +
+               "\n 7. Выход из программы.\n");
+                do
+                {
+                    Console.Write("\n Введите номер операции (1 .. 7):  ");
+                    try
+                    {
+                        N = int.Parse(Console.ReadLine());
+                    }
+                    catch (Exception)
+                    { }
+                }
+                while (!(N == 1 || N == 2 || N == 3 || N == 4 || N == 5 || N == 6 || N == 7));
+                switch (N)
+                {
+                    case 1:
+                        Function_1();
+                        break;
+                    case 2:
+                        Function_2();
+                        break;
+                    case 3:
+                        Function_3();
+                        break;
+                    case 4:
+                        Function_4();
+                        break;
+                    case 5:
+                        Function_5();
+                        break;
+                    case 6:
+                        Function_6();
+                        break;
+                    case 7:
+                        return;
+                    default:
+                        break;
+                }
+            }
+        }
+        public static void Function_1()
+        {
+            Console.Write("\n ЗАПОЛНЕНИЕ МАССИВА " +
+                    "\n\n Введите количество чисел (1 .. 50):  ");
+            try
+            {
+                const int Z_min = 1, Z_max = 50, Lim_min = -100, Lim_max = 100;
+                Z = int.Parse(Console.ReadLine());
+                if (Z > Z_max || Z < Z_min)
+                {
+                    Console.Write("\n Вы вышли за пределы допустимых значений. " +
+                           "\n Чтобы начать заново, нажмите Enter\n");
+                    Console.Write(Console.ReadLine());
+                    return;
+                }
+                Console.Write("\n Введите наименьшее возможное значение (-100 .. 100):  ");
+                Lim_down = int.Parse(Console.ReadLine());
+                if (Lim_down < Lim_min || Lim_down > Lim_max)
+                {
+                    Console.Write("\n Вы вышли за пределы допустимых значений. " +
+                           "\n Чтобы начать заново, нажмите Enter\n");
+                    Console.Write(Console.ReadLine());
+                    return;
+                }
+                Console.Write("\n Введите наибольшее возможное значение (-100 .. 100):  ");
+                Lim_up = int.Parse(Console.ReadLine());
+                if (Lim_up < Lim_min || Lim_up > Lim_max)
+                {
+                    Console.Write("\n Вы вышли за пределы допустимых значений. " +
+                           "\n Чтобы начать заново, нажмите Enter\n");
+                    Console.Write(Console.ReadLine());
+                    return;
+                }
+                if (Lim_up <= Lim_down)
+                {
+                    Console.Write("\n Наибольшее возможное значение не может быть меньше или равно наименьшему возможному. " +
+                           "\n Чтобы начать заново, нажмите Enter\n");
+                    Console.Write(Console.ReadLine());
+                    return;
+                }
+            }
+            catch (Exception)
+            {
+                Console.Write("\n Bы ввели недопустимое значение. \n Чтобы вернуться в меню, нажмите Enter\n");
+                Console.ReadLine();
+                return;
+            }
+            M = new int[Z];
+            Console.Write("\n Элементы:  ");
+            for (int i = 0; i < Z; i++)
+            {
+                M[i] = R.Next(Lim_down, Lim_up);
+                Console.Write(" {0:d}", M[i]);
+            }
+            Console.WriteLine();
+            L = true;
+        }
+        public static void Function_2()
+        {
+            int Direct_sort;
+            const int Direct_decrease = 0, Direct_increase = 1;
+            if (L)
+            {
+                Console.Write("\n\n ПУЗЫРЬКОВАЯ СОРТИРОВКА" +
+                       "\n Введите направление сортировки (0 — по убыванию, 1 — по возрастанию):  ");
+                try
+                {
+                    Direct_sort = int.Parse(Console.ReadLine());
+                    if (Direct_sort != Direct_decrease && Direct_sort != Direct_increase)
+                    {
+                        Console.Write("\n Вы ввели недопустимое значение. " +
+                               "\n Чтобы начать заново, нажмите Enter\n");
+                        Console.Write(Console.ReadLine());
+                        return;
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("\n Вы ввели недопустимое значение. Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    return;
+                }
+                Console.Write("\n");
+                if (Direct_sort == Direct_decrease)
+                {
+                    for (int i = 0; i < Z; i++)
+                        Console.Write(" {0:d}", M[i]);
+                    Console.WriteLine();
+                    for (int i = Z - 1; i > 0; i--)
+                    {
+                        for (int j = 0; j < i; j++)
+                        {
+                            if (M[j] < M[j + 1])
+                            {
+                                int T = M[j];
+                                M[j] = M[j + 1];
+                                M[j + 1] = T;
+                            }
+                            for (int jj = 0; jj < Z; jj++)
+                                Console.Write(" {0:d}", M[jj]);
+                            Console.WriteLine();
+                        }
+                    }
+                    Console.Write("\n Массив отсортирован. Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    return;
+                }
+                if (Direct_sort == Direct_increase)
+                {
+                    for (int i = 0; i < Z; i++)
+                        Console.Write(" {0:d}", M[i]);
+                    Console.Write("\n");
+                    for (int i = Z - 1; i > 0; i--)
+                    {
+                        for (int j = 0; j < i; j++)
+                        {
+                            if (M[j] > M[j + 1])
+                            {
+                                int T = M[j];
+                                M[j] = M[j + 1];
+                                M[j + 1] = T;
+                            }
+                            for (int jj = 0; jj < Z; jj++)
+                                Console.Write(" {0:d}", M[jj]);
+                            Console.WriteLine();
+                        }
+                    }
+                    Console.Write("\n Массив отсортирован. Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    Q = true;
+                    return;
+                }
+            }              
+            else
+            {
+                Console.Write("\n Массив не был сформирован.\n Сначала следует сформировать массив, а уже затем сортировать.\n Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                Console.ReadLine();
+                return;
+            }
+        }
+        public static void Function_3()
+        {
+            int Direct_sort;
+            const int Direct_decrease = 0, Direct_increase = 1;
+            if (L)
+            {
+                Console.Write("\n\n СОРТИРОВКА ВЫБОРОМ" +
+                       "\n Введите направление сортировки (0 — по убыванию, 1 — по возрастанию):  ");
+                try
+                {
+                    Direct_sort = int.Parse(Console.ReadLine());
+                    if (Direct_sort != Direct_decrease && Direct_sort != Direct_increase)
+                    {
+                        Console.Write("\n Вы ввели недопустимое значение. " +
+                               "\n Чтобы начать заново, нажмите Enter\n");
+                        Console.Write(Console.ReadLine());
+                        return;
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("\n Вы ввели недопустимое значение. Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    return;
+                }
+                Console.Write("\n");
+                if (Direct_sort == Direct_decrease)
+                {
+                    for (int i = 0; i < Z; i++)
+                        Console.Write(" {0:d}", M[i]);
+                    Console.Write("\n");
+                    for (int i = 0; i < Z - 1; i++)
+                    {
+                        {
+                            int iMax = i;
+                            for (int j = i + 1; j < Z; j++)
+                                iMax = M[j] > M[iMax] ? j : iMax;
+                            int T = M[i];
+                            M[i] = M[iMax];
+                            M[iMax] = T;
+                        }
+                        for (int jj = 0; jj < Z; jj++)
+                            Console.Write(" {0:d}", M[jj]);
+                        Console.WriteLine();
+                    }
+                    Console.Write("\n Массив отсортирован. Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    return;
+                }
+                if (Direct_sort == Direct_increase)
+                {
+                    for (int i = 0; i < Z; i++)
+                        Console.Write(" {0:d}", M[i]);
+                    Console.Write("\n");
+                    for (int i = 0; i < Z - 1; i++)
+                    {
+                        {
+                            int iMin = i;
+                            for (int j = i + 1; j < Z; j++)
+                                iMin = M[j] < M[iMin] ? j : iMin;
+                            int T = M[i];
+                            M[i] = M[iMin];
+                            M[iMin] = T;
+                        }
+                        for (int jj = 0; jj < Z; jj++)
+                            Console.Write(" {0:d}", M[jj]);
+                        Console.WriteLine();
+                    }
+                    Console.Write("\n Массив отсортирован. Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    Q = true;
+                    return;
+                }
+            }              
+            else
+            {
+                Console.Write("\n Массив не был сформирован.\n Сначала следует сформировать массив, а уже затем сортировать.\n Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                Console.ReadLine();
+                return;
+            }
+        }
+        public static void Function_4()
+        {
+            int Direct_sort;
+            const int Direct_decrease = 0, Direct_increase = 1;
+            if (L)
+            {
+                Console.Write("\n\n СОРТИРОВКА ВСТАВКАМИ" +
+                   "\n Введите направление сортировки (0 — по убыванию, 1 — по возрастанию):  ");
+                try
+                {
+                    Direct_sort = int.Parse(Console.ReadLine());
+                    if (Direct_sort != Direct_decrease && Direct_sort != Direct_increase)
+                    {
+                        Console.Write("\n Вы ввели недопустимое значение. " +
+                               "\n Чтобы начать заново, нажмите Enter\n");
+                        Console.Write(Console.ReadLine());
+                        return;
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("\n Вы ввели недопустимое значение. Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    return;
+                }
+                Console.Write("\n");
+                if (Direct_sort == Direct_decrease)
+                {
+                    for (int i = 0; i < Z; i++)
+                        Console.Write(" {0:d}", M[i]);
+                    Console.Write("\n");
+                    for (int i = 1; i < Z; i++)
+                    {
+                        {
+                            int j = i;
+                            while (M[j] > M[j - 1])
+                            {
+                                int T = M[j];
+                                M[j] = M[j - 1];
+                                M[j - 1] = T;
+                                j--;
+                                if (j == 0)
+                                    break;
+                            }
+                            for (int jj = 0; jj < Z; jj++)
+                                Console.Write(" {0:d}", M[jj]);
+                            Console.WriteLine();
+                        }
+                    }
+                    Console.Write("\n Массив отсортирован. Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    return;
+                }
+                if (Direct_sort == Direct_increase)
+                {
+                    for (int i = 0; i < Z; i++)
+                        Console.Write(" {0:d}", M[i]);
+                    Console.Write("\n");
+                    for (int i = 1; i < Z; i++)
+                    {
+                        {
+                            int j = i;
+                            while (M[j] < M[j - 1])
+                            {
+                                int T = M[j];
+                                M[j] = M[j - 1];
+                                M[j - 1] = T;
+                                j--;
+                                if (j == 0)
+                                    break;
+                            }
+                            for (int jj = 0; jj < Z; jj++)
+                                Console.Write(" {0:d}", M[jj]);
+                            Console.WriteLine();
+                        }
+                    }
+                }
+                Console.Write("\n Массив отсортирован. Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                Console.ReadLine();
+                Q = true;
+                return;
+            }
+            else
+            {
+                Console.Write("\n Массив не был сформирован.\n Сначала следует сформировать массив, а уже затем сортировать.\n Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                Console.ReadLine();
+                return;
+            }
+        }
+        public static void Function_5()
+        {
+            int Direct_sort, k = 0;
+            const int Direct_decrease = 0, Direct_increase = 1;
+            if (L)
+            {
+                Console.Write("\n\n СОРТИРОВКА ПОДСЧЕТОМ" +
+                   "\n Введите направление сортировки (0 — по убыванию, 1 — по возрастанию):  ");
+                try
+                {
+                    Direct_sort = int.Parse(Console.ReadLine());
+                    Console.WriteLine();
+                    if (Direct_sort != Direct_decrease && Direct_sort != Direct_increase)
+                    {
+                        Console.Write("\n Вы ввели недопустимое значение. " +
+                               "\n Чтобы начать заново, нажмите Enter\n");
+                        Console.Write(Console.ReadLine());
+                        return;
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("\n Вы ввели недопустимое значение. Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    return;
+                }
+                if (Direct_sort == Direct_decrease)
+                {
+                    for (int i = 0; i < Z; i++)
+                        Console.Write(" {0:d}", M[i]);
+                    Console.Write("\n");
+                    int[] S = new int[Lim_up];
+                    for (int i = 0; i < Lim_up; k++)
+                    {
+                        S[i] = 0;
+                        for (i = 0; i < Z; i++)
+                            S[M[i]]++;
+                        int j = 0;
+                        for (i = 0; i < Lim_up; i++)
+                            for (k = 0; k < S[i]; k++)
+                                M[j++] = i;
+                        for (int jj = Z - 1; jj >= 0; jj--)
+                            Console.Write(" {0:d}", M[jj]);
+                        Console.WriteLine();
+                    }
+                    Console.Write("\n Массив отсортирован. Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    k++;
+                    return;
+                }
+                if (Direct_sort == Direct_increase)
+                {
+                    for (int i = 0; i < Z; i++)
+                        Console.Write(" {0:d}", M[i]);
+                    Console.Write("\n");
+                    int[] S = new int[Lim_up];
+                    for (int i = 0; i < Lim_up; k++)
+                    {
+                        S[i] = 0;
+                        for (i = 0; i < Z; i++)
+                            S[M[i]]++;
+                        int j = 0;
+                        for (i = 0; i < Lim_up; i++)
+                            for (k = 0; k < S[i]; k++)
+                                M[j++] = i;
+                        for (int jj = 0; jj < Z; jj++)
+                            Console.Write(" {0:d}", M[jj]);
+                        Console.WriteLine();
+                    }
+                    Console.Write("\n Массив отсортирован. Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    Q = true;
+                    return;
+                }
+            }
+            else
+            {
+                Console.Write("\n Массив не был сформирован.\n Сначала следует сформировать массив, а уже затем сортировать.\n Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                Console.ReadLine();
+                return;
+            }
+        }
+        public static void Function_6()
+        {
+            int Search_element;
+            const int Lim_down = -1000, Lim_up = 1000;
+            if (Q)
+            {
+                Console.Write("\n\n ДВОИЧНЫЙ ПОИСК ЗНАЧЕНИЯ" +
+                  "\n Введите искомое значение (-1000 .. 1000):  ");
+                try
+                {
+                    Search_element = int.Parse(Console.ReadLine());
+                    if (Search_element < Lim_down || Search_element > Lim_up)
+                    {
+                        Console.Write("\n Вы вышли за пределы допустимых значений. " +
+                               "\n Чтобы начать заново, нажмите Enter\n");
+                        Console.Write(Console.ReadLine());
+                        return;
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("\n Вы ввели недопустимое значение. Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    return;
+                }
+                int Left = 0, Right = Z - 1, Mid = 0;
+                bool Found = false;
+                while (Left <= Right)
+                {
+                    Mid = (Left + Right) / 2;
+                    if (Search_element < M[Mid])
+                        Right = Mid - 1;
+                    if (Search_element > M[Mid])
+                        Left = Mid + 1;
+                    if (Search_element == M[Mid])
+                    {
+                        Found = true;
+                        break;
+                    }
+                }
+                if (Found)
+                {
+                    Console.Write("\n Искомое значение имеет элемент с индексом {0:d}", Mid + 1, "\n Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    return;
+                }
+                else
+                {
+                    Console.Write("\n Искомое значение не найдено.\n Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                    Console.ReadLine();
+                    return;
+                }
+            }
+            else
+            {
+                Console.Write("\n Массив не был отсортирован по возрастанию.\n Это обязательное требование для осуществления двоичного поиска.\n Нажмите клавишу Энтер, чтобы вернуться в меню\n");
+                Console.ReadLine();
+                return;
+            }
+        }
+    }
+}
